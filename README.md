@@ -2,6 +2,8 @@
 
 A sample AI chatbot project with RAG (Retrieval Augmented Generation), running on Docker Compose.
 
+![Screenshot](docs/screenshot.svg)
+
 ## Architecture
 
 - **Frontend**: Next.js (App Router) + [Vercel AI SDK](https://sdk.vercel.ai/)'s `useChat` for streaming display

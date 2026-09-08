@@ -1,0 +1,31 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif">
+  <rect width="800" height="460" fill="#f5f6f8"/>
+
+  <!-- header -->
+  <rect x="0" y="0" width="800" height="42" fill="#ffffff"/>
+  <line x1="0" y1="42" x2="800" y2="42" stroke="#e2e4e8" stroke-width="1"/>
+  <text x="24" y="26" font-size="15" font-weight="700" fill="#1a1a1a">AI Chatbot Sample</text>
+
+  <!-- user bubble -->
+  <rect x="546" y="58" width="130" height="34" rx="12" fill="#2563eb"/>
+  <text x="611" y="80" font-size="13" fill="#ffffff" text-anchor="middle">こんにちは</text>
+
+  <!-- assistant bubble -->
+  <rect x="24" y="106" width="460" height="150" rx="12" fill="#ffffff" stroke="#e2e4e8" stroke-width="1"/>
+  <text x="40" y="130" font-size="12.5" fill="#1a1a1a">
+    <tspan x="40" dy="0">私は、あなたにお会いして本当に楽しい時間を過ごしました。ありがとう</tspan>
+    <tspan x="40" dy="20">ございます!今日はとても有意義な一日でした……私はあなたを幸せに</tspan>
+    <tspan x="40" dy="20">してあげるよ(*m)プッ♪ お礼が遅くなり申し訳ありませんでした (;_;)</tspan>
+    <tspan x="40" dy="20">たくさんの愛と幸運に包まれて幸せいっぱいです!!いつもありがとうござ</tspan>
+    <tspan x="40" dy="20">います♡♡♥♥♥★☆♥☆ この度はどうも有り難う御座いました&lt;(_ _)&gt;</tspan>
+    <tspan x="40" dy="20">また今後ともよろしくお願いしますね^-^* これからまた素敵な</tspan>
+    <tspan x="40" dy="20">お相手探しを頑張りたいと思います♥</tspan>
+  </text>
+
+  <!-- input bar -->
+  <line x1="0" y1="418" x2="800" y2="418" stroke="#e2e4e8" stroke-width="1"/>
+  <rect x="24" y="434" width="704" height="26" rx="6" fill="#ffffff" stroke="#d0d3d9" stroke-width="1"/>
+  <text x="36" y="451" font-size="12.5" fill="#8a8f98">Type a message...</text>
+  <rect x="740" y="434" width="60" height="26" rx="6" fill="#9db6e8"/>
+  <text x="770" y="451" font-size="12" fill="#ffffff" text-anchor="middle">Send</text>
+</svg>
