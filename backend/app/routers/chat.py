@@ -7,7 +7,7 @@ from app.config import settings
 from app.db import insert_chat_message, search_similar_documents
 from app.ml.embeddings import embed_text
 from app.ml.generator import stream_generate
-from app.rag import build_prompt
+from app.rag import build_messages
 from app.schemas import ChatRequest
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
@@ -20,13 +20,13 @@ async def chat(payload: ChatRequest) -> StreamingResponse:
 
     embedding = embed_text(query)
     contexts = await search_similar_documents(embedding, settings.top_k)
-    prompt = build_prompt(query, contexts)
+    messages = build_messages(query, contexts)
 
     await insert_chat_message("user", query)
 
     async def event_stream():
         loop = asyncio.get_event_loop()
-        generator = stream_generate(prompt)
+        generator = stream_generate(messages)
         full_response = ""
         while True:
             chunk = await loop.run_in_executor(None, next, generator, None)

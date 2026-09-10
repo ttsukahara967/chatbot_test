@@ -1,11 +1,16 @@
-def build_prompt(query: str, contexts: list[str]) -> str:
-    if not contexts:
-        return f"質問: {query}\n回答:"
+def build_messages(query: str, contexts: list[str]) -> list[dict]:
+    if contexts:
+        context_block = "\n".join(f"- {c}" for c in contexts)
+        system_content = (
+            "あなたは社内向けの質問応答アシスタントです。"
+            "以下の参考情報に基づいて、質問に簡潔かつ正確に答えてください。"
+            "参考情報に答えがない場合は、分からない旨を伝えてください。\n\n"
+            f"参考情報:\n{context_block}"
+        )
+    else:
+        system_content = "あなたは質問応答アシスタントです。質問に簡潔に答えてください。"
 
-    context_block = "\n".join(f"- {c}" for c in contexts)
-    return (
-        "以下の参考情報を踏まえて、質問に答えてください。\n\n"
-        f"参考情報:\n{context_block}\n\n"
-        f"質問: {query}\n"
-        "回答:"
-    )
+    return [
+        {"role": "system", "content": system_content},
+        {"role": "user", "content": query},
+    ]
