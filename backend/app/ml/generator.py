@@ -19,11 +19,15 @@ def _load():
             settings.generation_model, use_fast=False
         )
         # float16 roughly halves memory usage vs. the fp32 default, which
-        # matters when running on a memory-constrained Docker environment
+        # matters when running on a memory-constrained Docker environment.
+        # device_map="auto" (via accelerate) places the model on the GPU when
+        # one is visible to the container (see docker-compose.yml's GPU
+        # reservation), and transparently falls back to CPU otherwise.
         _model = AutoModelForCausalLM.from_pretrained(
             settings.generation_model,
             torch_dtype=torch.float16,
             low_cpu_mem_usage=True,
+            device_map="auto",
         )
         _model.eval()
         if _tokenizer.pad_token_id is None:
@@ -61,7 +65,7 @@ def stream_generate(
     and tokens are streamed via TextIteratorStreamer.
     """
     tokenizer, model = _load()
-    inputs = _build_inputs(tokenizer, messages)
+    inputs = _build_inputs(tokenizer, messages).to(model.device)
     streamer = TextIteratorStreamer(
         tokenizer, skip_prompt=True, skip_special_tokens=True
     )

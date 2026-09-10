@@ -35,6 +35,17 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    # Requires an NVIDIA GPU + driver on the host and the NVIDIA Container
+    # Toolkit installed (e.g. an EC2 g5.xlarge running Amazon Linux/Ubuntu
+    # with nvidia-container-toolkit). Not usable on Docker Desktop for Mac,
+    # which doesn't pass GPUs through to containers.
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 
   frontend:
     build: ./frontend
