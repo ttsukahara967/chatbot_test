@@ -24,7 +24,7 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-chatbot}
       EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2}
       EMBEDDING_DIM: ${EMBEDDING_DIM:-384}
-      GENERATION_MODEL: ${GENERATION_MODEL:-gpt2}
+      GENERATION_MODEL: ${GENERATION_MODEL:-llm-jp/llm-jp-3-1.8b-instruct}
       RAG_TOP_K: ${RAG_TOP_K:-3}
       MAX_NEW_TOKENS: ${MAX_NEW_TOKENS:-200}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}

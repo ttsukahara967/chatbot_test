@@ -27,8 +27,11 @@ Chat responses are streamed token by token, and the frontend renders them in rea
 ## Getting started
 
 ```bash
+cp .env.example .env
 docker compose up --build
 ```
+
+(`.env` is gitignored since it's meant for local overrides. `docker-compose.yml` has matching fallback defaults, so `docker compose up --build` alone works even without it — but copying `.env.example` first is recommended so your settings are explicit and easy to tweak.)
 
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:8000 (health check: `/health`)

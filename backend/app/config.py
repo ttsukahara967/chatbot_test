@@ -9,7 +9,7 @@ class Settings:
         "EMBEDDING_MODEL", "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
     )
     embedding_dim: int = int(os.getenv("EMBEDDING_DIM", "384"))
-    generation_model: str = os.getenv("GENERATION_MODEL", "gpt2")
+    generation_model: str = os.getenv("GENERATION_MODEL", "llm-jp/llm-jp-3-1.8b-instruct")
     top_k: int = int(os.getenv("RAG_TOP_K", "3"))
     max_new_tokens: int = int(os.getenv("MAX_NEW_TOKENS", "200"))
     cors_origins: list[str] = [
