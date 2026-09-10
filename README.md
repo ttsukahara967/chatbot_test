@@ -4,6 +4,11 @@ A sample AI chatbot project with RAG (Retrieval Augmented Generation), running o
 
 ![Screenshot](docs/screenshot.svg)
 
+> 🧪 **`aws-gpu` branch**: this branch adapts the backend to use an NVIDIA GPU when one is available, for deployment on an AWS EC2 GPU instance (e.g. `g5.xlarge`) with the NVIDIA Container Toolkit installed. It is **not runnable or testable on this Mac** — Docker Desktop for Mac doesn't pass GPUs through to containers at all, and there's no NVIDIA GPU on this host regardless. Treat this branch as a reviewable diff of the required changes, not a verified working setup. Changes from `master`:
+> - [backend/Dockerfile](backend/Dockerfile): installs the standard CUDA-enabled PyTorch wheel instead of the CPU-only build (larger image, but still runs fine on CPU-only hosts)
+> - [docker-compose.yml](docker-compose.yml): adds a `deploy.resources.reservations.devices` GPU reservation on the `backend` service (requires the host's NVIDIA Container Toolkit)
+> - [backend/app/ml/generator.py](backend/app/ml/generator.py) / [embeddings.py](backend/app/ml/embeddings.py): load models with `device_map="auto"` / `device="cuda"` when a GPU is visible, falling back to CPU otherwise
+
 ## Architecture
 
 - **Frontend**: Next.js (App Router) + [Vercel AI SDK](https://sdk.vercel.ai/)'s `useChat` for streaming display
